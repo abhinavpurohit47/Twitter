@@ -1,0 +1,67 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+.content{
+    margin-left: 600px;
+    margin-top: 30px;
+
+
+}
+
+.heading{
+    margin-left: 520px;
+    margin-top: 20px;
+    font-size: 23px;
+    font-family: sans-serif;
+}
+
+.main{
+    margin-left:400px;
+
+
+}
+
+.form input{
+    font-size:20px ;
+    padding: 20px;
+    width: 500px;
+    margin-top: 10px;
+    border:none;
+    border-bottom: 3px solid rgb(29 161 242);
+    outline-style:none ;
+    padding-bottom: 15px;
+
+}
+
+.btn button{
+    border-radius: 30px;
+    margin-top: 15px;
+    padding: 15px;
+    width: 530px;
+    border: none;
+    color:white ;
+    outline-style:none ;
+    background-color: rgb(29 161 242);
+    opacity: .8;
+    margin-top:25px ;
+    margin-right: -10px;
+}
+
+.forget{
+    margin-left:150px;
+    margin-top: 22px;
+    margin-bottom: 30px;
+
+
+}
+
+p a{
+    color: rgb(29 161 242)
+}
+
+.signup{
+    margin-left: 330px;
+    margin-top: -48px;
+}

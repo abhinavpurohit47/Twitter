@@ -1,0 +1,149 @@
+:root{
+    --main-color: #1da2f2;
+    --dark-color:#14171a;
+    --footer-link-color: #aab8c2;
+    --footer-top-border-color: #e6ecf0;
+
+}
+
+
+*,*::after, *::before{
+    box-sizing: border-box;
+}
+
+body,html{
+    margin: 0;
+    padding: 0;
+}
+p,a,h1,h2,h3,li,span{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container-fluid{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 85vh 15vh;
+
+}
+
+.container-fluid .left-box{
+    background-color: var(--main-color);
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-fluid .left-box ul li{
+    list-style-type:none ;
+    font-size:18px;
+    line-height: 24px;
+    margin: 50px 0;
+    font-weight: bold;
+    color: #fff;
+
+}
+
+.container-fluid .left-box ul li .icon{
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.container-fluid .right-box{
+    background-color: #fff;
+    grid-column: 2 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container-fluid .right-box .card{
+  min-width: 300px;
+  border :none;
+ padding: 0 60px;
+ 
+}
+
+.container-fluid .right-box .card .head{
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-fluid .right-box .card h1{
+  font-size:27px ;
+  line-height: 32px;
+  color: var(--dark-color);
+}
+.container-fluid .right-box .card p{
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--dark-color);
+}
+
+.container-fluid .bottom-box{
+    background-color: #fff;
+    grid-column: 1 /-1;
+    border-top: 1px solid var(--footer-top-border-color);
+}
+
+
+button.btn{
+  display: block;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-weight: bold;
+  margin-bottom: 100px;
+}
+
+button.block{
+  width: 100%;
+  margin-bottom: 0.6rem;
+}
+
+button.primary{
+  background-color: var(--main-color);
+  color: #fff;
+
+}
+
+button.outline{
+  background-color: #fff;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+}
+
+
+.container-fluid .right-box .card .head .logo{
+  font-size:  2.5em; 
+  color: var(--main-color);
+  margin-bottom:100px ;
+}
+
+.container-fluid .bottom-box ul{
+  text-align: center;
+
+}
+.container-fluid .bottom-box ul li{
+  display: inline-block;
+  
+  margin:0 15px;
+
+}
+
+.container-fluid .bottom-box ul li a{
+  font-size: 12px;
+  text-decoration: none;
+ 
+  padding: 5px;
+  color: var(--footer-link-color);
+
+}
+.container-fluid .bottom-box ul li a:hover{
+  text-decoration: underline;
+}

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Twittter</title>
+
+    <script src="https://use.fontawesome.com/9243569efd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="/home/style.css">
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item ">
+                <a class="nav-link" href="#"><i class="fa fa-home"></i> Home</a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="#"><i class="fa fa-search-o"></i> Explore</a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="#"><i class="fa fa-bell"></i> <sup>27+</sup> Notifications</a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="#"><i class="fa fa-envelope"> </i> <sup>3</sup> Messages</a>
+              </li>
+            
+              <li class="nav-item ">
+                <a class="nav-link" href="#"><i class="fa fa-bookmark"> </i> Bookmarks</a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="#"><i class="fa fa-file-text-o"> </i> Lists</a>
+              </li>
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="#"><i class="fa fa-chevron-circle-down"> </i> More</a>
+              </li>
+           
+          </ul>
+
+          <a class="navbar-brand" href="#"> <i class="fa fa-twitter"></i> </a>
+
+
+      <!-- <form class="form-inline my-2 my-lg-0">
+              <div class="search-container"></div>
+                <i class="fa fa-search"> </i>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Twitter" aria-label="Search" id="searchbar">
+                
+          </form> -->
+          <form class="navbar-form" role="search">
+            <div class="input-group">
+              <input type="text" class="form-control input-search" placeholder="Search Twitter" name="srch-term" id="srch-term">
+              <div class="input-group-btn">
+                <button class="btn btn-default btn-search" type="submit"><i class="fa fa-search navbar-search-icon"></i></button>
+              </div>
+            </div>
+          </form>
+          <a class="btn btn-primary" id="tweet-button">Tweet</a>
+        </div>
+    </div>
+      </nav>
+  <div class="WH">
+    <div class="User-Tweet-Input">
+        <img class="user-profile-picture" src="./images/Dab.jpg" alt="Profile Photo">
+        <input class="tweet-input" id="postsomething" type="text" placeholder="What's happening?" maxlength="280">
+    
+    <div class="tweet-controls">
+        <div class="media-icons">
+            <span class="media-icons-hover"><i class="fa fa-picture-o fa-lg"></i>&nbsp;</span>
+            <span class="media-icons-hover"><i class="fa fa-camera fa-lg"></i></span>
+            <span class="media-icons-hover"><i class="fa fa-bar-chart fa-lg"></i></span>
+            <span class="media-icons-hover"><i class="fa fa-smile-o fa-lg"></i></span>
+            <span class="media-icons-hover"><i class="fa fa-calendar-check-o fa-lg"></i></span> 
+        </div>
+    </div> 
+        <!--<span><button type="button" class="tweet-button2">Tweet</button></span>
+        --> </div>
+</div>
+
+    <!--  <header>
+          <div id="cover-photo-wrapper">
+                <img src="images/AppleEDUProfile.jpg"alt="Cover Image - Abhinav" />
+          </div>
+
+          <div id="profile-photo-wrapper">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-4">
+                          <img src="images/Dab.jpg" id="profile-photo" alt="Profile Photo - Abhinav" />
+                      </div>
+                      <div class="col-6">
+                        <a href="#" class="profile-stats">Tweets<span>320</span></a>
+                        <a href="#" class="profile-stats">Following<span>30</span></a>
+                        <a href="#" class="profile-stats">Followers<span>8420</span></a>
+                        <a href="#" class="profile-stats">Likes<span>2689</span></a>
+                    </div>
+                    <div class="col-2">
+                        
+                        <button type="button" class="btn btn-outline-primary" id="follow-button">Follow</button>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </header>-->
+
+    <div class="container-fluid">
+        <div class="row">
+            <section class="col-2" id="profile">
+                <hgroup>
+                    <a href="#"><h1>Abhinav Purohit <i class="fa fa-check-circle" aria-hidden="true"></i></h1></a>
+                    <a href="#"><h2>@purohit47</h2></a>
+                </hgroup>
+                <p>This is Twitter Clone made by Abhinav Purohit.</p>
+                <p><span><i class="fa fa-map-marker"></i> Chandigarh, India</span></p>
+                <p><span><i class="fa fa-link"></i> <a href="#"> abhinavpurohit47.com</a> </span></p>
+                <p><span><i class="fa fa-calendar"></i> Joined Nov. 2020</span></p>
+                <br>
+                <span> <i class="fa fa-image"></i> <a href="#">75 Photos and videos</a></span>
+                <div id="photos-and-videos">
+                   <img src="images/wolf.jpg"  height="50px" width="30px" alt="Tweeted Photo" />
+                   <img src="images/ring.jpg" height="50px" width="30px" alt="Tweeted Photo" />
+                   
+                   <img src="images/triangle.jpg"  height="50px" width="30px" alt="Tweeted Photo" />        
+                   
+                   <br><img src="images/47.png" height="50px" width="30px" alt="Tweeted Photo" />
+                   
+                   <img src="images/tree.png" height="50px" width="30px" alt="Tweeted Photo" />
+                   <img src="images/bolt.jpg" height="50px" width="30px" alt="Tweeted Photo" />
+                   <br>
+                <img src="images/eye.jpg" height="50px" width="30px" alt="Tweeted Photo" />
+                   
+                   <img src="images/light.jpg" height="50px" width="30px" alt="Tweeted Photo" />
+                   <img src="images/wings.jpg" height="50px" width="30px" alt="Tweeted Photo" />
+                   <br>
+                </div>
+            </section> 
+
+            <div class="col-6" id="tweets">
+                <article class="container">
+                    <div class="row no-gutters">
+                        <div class="col-1">
+                           
+                            <img src="images/ravi.jpg" class="profile-thumbnail" alt="Profile Photo- Ravi Shastri" />    
+                        </div>
+                        <div class="col-11 tweet-body">
+                            <a href="#" class="tweet-username"> <span class="username-name">Ravi Shastri </span> <i class="fa fa-check-circle"></i> <span class="username-handle"> @thebhandcoach &nbsp;· 2hr</span></a>
+                            <p> Dhoni finishes off in style. India lifts the worldcup after 28 years and it's an Indian Captain who has been magnificent on the night of the finals.  </p> 
+                            <img src="images/dhoni.jpg" alt="Dhoni">
+                            <nav>
+                                <a href="#" class="comments"> <i class="fa fa-comment-o"></i> 8k</a>
+                                <a href="#" class="retweets"> <i class="fa fa-retweet"></i> 782</a>
+                                <a href="#" class="likes"> <i class="fa fa-heart-o"></i> 13k</a>
+                                <a href="#" class="upload"> <i class="fa fa-upload"></i></a>
+                                
+                            </nav>
+                        </div>
+                    </div>
+                </article>
+                <article class="container">
+                    <!--this no-gutters removes margin and padding -->
+                    <div class="row no-gutters">
+                    <div class="col-1">
+                            <img src="images/ro.jpg" class="profile-thumbnail" alt="Profile Photo- Rohit Sharma"/>
+                    </div>
+                    <div class="col-11 tweet-body">
+                        <a href="#" class="tweet-username"> <span class="username-name">Rohit Sharma</span> <i class="fa fa-check-circle"></i> <span class="username-handle"> @iamro45 &nbsp;· 3m</span></a>
+                        <p>Really happy after winning defending the trophy and overall 5th title win. Kudos to the team.</p>
+                        <nav>
+                            <a href="#" class="comments"> <i class="fa fa-comment-o"></i> 6k</a>
+                            <a href="#" class="retweets"> <i class="fa fa-retweet"></i> 1.7k</a>
+                            <a href="#" class="likes"> <i class="fa fa-heart-o"></i> 5k</a>
+                            <a href="#" class="upload"> <i class="fa fa-upload"></i></a>
+                            
+                        </nav>
+                    </div>
+                </div>
+                </article>
+
+                <article class="container">
+                    <div class="row no-gutters">
+                        <div class="col-1">
+                           
+                            <img src="images/Modi.jpg" class="profile-thumbnail" alt="Profile Photo- narendramodi" />    
+                        </div>
+                        <div class="col-11 tweet-body">
+                            <a href="#" class="tweet-username"> <span class="username-name">Narendra Modi</span> <i class="fa fa-check-circle"></i> <span class="username-handle"> @narendramodi &nbsp;· Nov 8</span></a>
+                            <p>Went to Advani Ji’s residence to wish him on his birthday. It is always a delight to spend time with him. For Karyakartas like me, Advani Ji’s support and guidance remain invaluable. His contributions to nation building are immense.</p> 
+                            <img src="images/modiadvani.jpg" alt="ModiPost">
+                            <nav>
+                                <a href="#" class="comments"> <i class="fa fa-comment-o"></i> 6.5k</a>
+                                <a href="#" class="retweets"> <i class="fa fa-retweet"></i> 12.9</a>
+                                <a href="#" class="likes"> <i class="fa fa-heart-o"></i> 136k</a>
+                                <a href="#" class="upload"> <i class="fa fa-upload"></i></a>
+                                
+                            </nav>
+                        </div>
+                    </div>
+                </article>
+                <article class="container">
+                    <!--this no-gutters removes margin and padding -->
+                    <div class="row no-gutters">
+                    <div class="col-1">
+                            <img src="images/2.jpg" class="profile-thumbnail" alt="Profile Photo- Ricky Gervais" />
+                    </div>
+                    <div class="col-11 tweet-body">
+                        <a href="#" class="tweet-username"> <span class="username-name">Ricky Gervais</span> <i class="fa fa-check-circle"></i> <span class="username-handle"> @rickygervais &nbsp;· 4hr</span></a>
+                        <p>I don't host the Golden Globe awards for some 200 movie guys who are there in the arena but I host these awards for those thousands of people who are watching this telecast on television.</p>
+                        <nav>
+                            <a href="#" class="comments"> <i class="fa fa-comment-o"></i> 6k</a>
+                            <a href="#" class="retweets"> <i class="fa fa-retweet"></i> 1.7k</a>
+                            <a href="#" class="likes"> <i class="fa fa-heart-o"></i> 5k</a>
+                            <a href="#" class="upload"> <i class="fa fa-upload"></i></a>
+                            
+                        </nav>
+                    </div>
+                </div>
+                </article>
+                <article class="container">
+                    <!--this no-gutters removes margin and padding -->
+                    <div class="row no-gutters">
+                    <div class="col-1">
+                            <img src="images/Modi.jpg" class="profile-thumbnail" alt="Profile Photo - narendramodi"/>
+                    </div>
+                    <div class="col-10 tweet-body">
+                        <a href="#" class="tweet-username"> <span class="username-name">Narendra Modi</span> <i class="fa fa-check-circle"></i> <span class="username-handle"> @narendramodi &nbsp;· 3h</span></a>
+                        <p>नई National Education Policy की Core Values हैं- Confidence, Conviction और Character से भरे युवा भारत का निर्माण करना।
+ 
+                            यही स्वामी जी का भी विजन था। वे चाहते थे कि भारत में शिक्षा ऐसी हो, जो आत्मविश्वास दे और हर प्रकार से आत्मनिर्भर बनाए।</p>
+                        <nav>
+                            <a href="#" class="comments"> <i class="fa fa-comment-o"></i> 486</a>
+                            <a href="#" class="retweets"> <i class="fa fa-retweet"></i> 1.4k</a>
+                            <a href="#" class="likes"> <i class="fa fa-heart-o"></i> 7.5k</a>
+                            <a href="#" class="upload"> <i class="fa fa-upload"></i></a>
+                            
+                        </nav>
+                    </div>
+                </div>
+                </article>
+                <article class="container">
+                    <!--this no-gutters removes margin and padding -->
+                    <div class="row no-gutters">
+                    <div class="col-1">
+                            <img src="images/ANI.jpg" class="profile-thumbnail" alt="Profile Photo- Rohit Sharma"/>
+                    </div>
+                    <div class="col-11 tweet-body">
+                        <a href="#" class="tweet-username"> <span class="username-name">ANI</span> <i class="fa fa-check-circle"></i> <span class="username-handle"> @ANI &nbsp;· 9h</span></a>
+                        <p>On the second day of his visit to Uttarakhand, Chief of Army Staff General MM Naravane reviewed the security situation and operational preparedness in select forward areas: Indian Army</p>
+                        <nav>
+                            <a href="#" class="comments"> <i class="fa fa-comment-o"></i> 60</a>
+                            <a href="#" class="retweets"> <i class="fa fa-retweet"></i> 35</a>
+                            <a href="#" class="likes"> <i class="fa fa-heart-o"></i> 59</a>
+                            <a href="#" class="upload"> <i class="fa fa-upload"></i></a>
+                            
+                        </nav>
+                    </div>
+                </div>
+                </article>
+                <article class="container">
+                    <!--this no-gutters removes margin and padding -->
+                    <div class="row no-gutters">
+                    <div class="col-1">
+                            <img src="images/ANI.jpg" class="profile-thumbnail" alt="Profile Photo- ANI"/>
+                    </div>
+                    <div class="col-11 tweet-body">
+                        <a href="#" class="tweet-username"> <span class="username-name">ANI</span> <i class="fa fa-check-circle"></i> <span class="username-handle"> @ANI &nbsp;·10m</span></a>
+                        <p>High-speed mobile data services in Ganderbal and Udhampur districts to continue till 26th November, while in rest of the districts the internet speed will be restricted to 2G only: Jammu and Kashmir Home Department</p>
+                        <nav>
+                            <a href="#" class="comments"> <i class="fa fa-comment-o"></i> 200</a>
+                            <a href="#" class="retweets"> <i class="fa fa-retweet"></i> 170</a>
+                            <a href="#" class="likes"> <i class="fa fa-heart-o"></i> 520</a>
+                            <a href="#" class="upload"> <i class="fa fa-upload"></i></a>
+                            
+                        </nav>
+                    </div>
+                </div>
+                </article>
+
+                <article class="container">
+                    <div class="row no-gutters">
+                        <div class="col-1">
+                           
+                            <img src="images/AppleEDUProfile.jpg" class="profile-thumbnail" alt="Profile Photo- Apple EDU" />    
+                        </div>
+                        <div class="col-11 tweet-body">
+                            <a href="#" class="tweet-username"> <span class="username-name">Apple Education </span> <i class="fa fa-check-circle"></i> <span class="username-handle"> @AppleEDU &nbsp;· 2hr</span></a>
+                            <p> Clips is a free app that lets teachers and students create and share engaging videos. In this video you’ll learn how to use Clips to create instructional videos — and how students can make videos to share what they’ve learned. </p> 
+                            <img src="images/apple.jpg" alt="Apple Education">
+                            <nav>
+                                <a href="#" class="comments"> <i class="fa fa-comment-o"></i> 8k</a>
+                                <a href="#" class="retweets"> <i class="fa fa-retweet"></i> 782</a>
+                                <a href="#" class="likes"> <i class="fa fa-heart-o"></i> 13k</a>
+                                <a href="#" class="upload"> <i class="fa fa-upload"></i></a>
+                                
+                            </nav>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <section class="col-4" id="rightside">
+                <div class="WHR">
+                    <div class="wtf0">What's Happening?</div>
+    
+                    <div class="wtf1">
+                        <div class="wtf11">Trending Worldwide</div>
+                        <div class="wtf12">#BreakingNews</div>
+                        <div class="wtf13">
+                            <div class="wrap">
+                                <div class="wrap1">
+                                    <div class="wtf131">Space</div>
+                                    <div class="wtf132">Some unusual pattern was spotted in the sky the previous night.</div>
+                                </div>
+                                <div><img class="img-WHR" src="./images/ring.jpg" alt=""></div>
+                            </div>    
+                                
+                        </div>
+                        <div class="wtf11">20,044 people are Tweeting about this</div>
+                    </div>
+    
+                    <div class="wtf2">
+                        <div class="wtf21">#DiwaliWithCoke
+                           
+                            </div>
+                        <div class="wtf22"> Jalao Rishton Ke Naye Diye.</div>
+                        
+                        <div class="wtf24">Promoted by Coca-Cola India</div>
+                    </div>
+    
+                    <div class="wtf1">
+                        <div class="wtf11">Trending Worldwide</div>
+                        <div class="wtf12">#BreakingNews</div>
+                        <div class="wtf13">
+                            <div class="wrap">
+                                <div class="wrap1">
+                                    <div class="wtf131">Cricket</div>
+                                    <div class="wtf132">Mumbai Indians defeated Delhi capitals to clinch their 5th title win.</div>
+                                </div>
+                            <div><img class="img-WHR" src="./Images/ipl-trophy.png" alt=""></div>
+    
+                            </div>   
+                        </div>
+                        <div class="wtf11">2,757 people are Tweeting about this</div>
+                    </div>
+    
+                    <div class="wtf2">
+                        <div class="wtf21">Trending Worldwide</div>
+                        <div class="wtf22">#GreatestOfAllTime</div>
+                        <div class="wtf23">100K Tweets</div>
+                        <div class="wtf24">4,123 people are tweeting about this</div>
+                    </div>
+    
+                    <div class="wtf5">Show more</div>
+                </div>    
+                <div class="follow_section">
+                    <div class="wtf6">Who to follow</div>
+    
+                    <div class="follow_container">
+                        <div class="Follow">
+                                    <img class="img-WTF" src="./images/bolt.jpg" alt="">
+                                    <div class="Namewrap">
+                                        <div class="Name-WTF">Flash</div>
+                                        <div class="ID-WTF"> @flash</div>
+                                    </div>
+                                <div class="follow-button-container"><button type="button" class="follow-button">Follow</button></div>    
+                        </div>
+                    </div>
+    
+    
+                    <div class="follow_container">
+                        <div class="Follow">
+                                    <img class="img-WTF" src="./images/db.jpg" alt="">
+                                    <div class="Namewrap">
+                                        <div class="Name-WTF">David Beckham</div>
+                                        <div class="ID-WTF">@davidbecham21</div>
+                                    </div>
+                                <div class="follow-button-container"><button type="button" class="follow-button">Follow</button></div>
+                        </div>
+                    </div>
+    
+    
+                    <div class="follow_container">
+                        <div class="Follow">
+                                    <img class="img-WTF" src="./images/crown.jpg" alt="">
+                                    <div class="Namewrap">
+                                        <div class="Name-WTF">Flower</div>
+                                        <div class="ID-WTF">@pink</div>
+                                    </div>
+                                <div class="follow-button-container"><button type="button" class="follow-button">Follow</button></div> 
+                        </div>
+                    </div>
+    
+    
+                    <div class="follow_container">
+                        <div class="Follow">
+                                    <img class="img-WTF" src="./images/eye.jpg" alt="">
+                                    <div class="Namewrap">
+                                        <div class="Name-WTF">John Cena</div>
+                                        <div class="ID-WTF">@johncena</div>
+                                    </div> 
+                                <div class="follow-button-container" ><button type="button" class="follow-button">Follow</button></div>  
+                        </div>
+                    </div>
+    
+                    
+                    
+                    <div class="wtf5">Show more</div>
+                </div>
+    <!--Terms and conditions-->  
+    
+                <div class="footer">
+                    <div>Terms</div>
+                    <div>Privacy policy</div>
+                    <div>Cookie</div>
+                    <div>Ads info</div>
+                    <div>More <i class="fa fa-angle-down"></i></div>
+                </div>
+                <div class="terms"><i class="fa fa-copyright"></i>2020 Twitter, Inc.</div>
+            </section>
+
+                </div>
+                
+                
+            </div>
+
+        
+    
+
+ <!--
+    <section class="col-2">
+     WHAT'S HAPPENING SECTION            
+
+     <div class="WHR">
+        <div class="p0">What's Happening?</div>
+
+        <div class="p1">
+            <div class="p11">Trending Worldwide</div>
+            <div class="p12">#BreakingNews</div>
+            <div class="p13">
+                <div class="wrap">
+                    <div class="wrap1">
+                        <div class="p131">Space</div>
+                        <div class="p132">Lunar photography improves the discovery of the moon</div>
+                    </div>
+                    <div><img class="img-WHR" src="./Images/moon.jfif" alt=""></div>
+                </div>    
+                    
+            </div>
+            <div class="p11">10,1094 people are Tweeting about this</div>
+        </div>
+
+        <div class="p2">
+            <div class="p21">Trending Worldwide</div>
+            <div class="p22">#WorldNews</div>
+            <div class="p23">125K Tweets</div>
+            <div class="p24">5,094 people are tweeting about this</div>
+        </div>
+
+        <div class="p1">
+            <div class="p11">Trending Worldwide</div>
+            <div class="p12">#BreakingNews</div>
+            <div class="p13">
+                <div class="wrap">
+                    <div class="wrap1">
+                        <div class="p131">Animals</div>
+                        <div class="p132">These cats are ready for #INTERNATIONALCATDAY</div>
+                    </div>
+                <div><img class="img-WHR" src="./Images/cat.jfif" alt=""></div>
+
+                </div>   
+            </div>
+            <div class="p11">2,757 people are Tweeting about this</div>
+        </div>
+
+        <div class="p2">
+            <div class="p21">Trending Worldwide</div>
+            <div class="p22">#GreatestOfAllTime</div>
+            <div class="p23">100K Tweets</div>
+            <div class="p24">4,123 people are tweeting about this</div>
+        </div>
+
+        <div class="p5">Show more</div>
+    </div>     
+    
+ </section>-->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+</body>
+</html>
