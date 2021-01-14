@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
-    <link rel="stylesheet" href="/loginPage/twitterlogin.css">
+    <link rel="stylesheet" href="home/css/twitterlogin.css">
 </head>
 <body>
     <div class="section">
         <div class="content">
-            <img src="../images/bird.png" width="40px" height="35px" alt="twitter_icon">
+            <img src="home/images/bird.png" width="40px" height="35px" alt="twitter_icon">
         </div>
         <div class="heading">
             <h2>
@@ -20,10 +20,10 @@
         <div class="main">
             <div class="form">
                 <form action="/loginUser" method="POST">
-                    <input type="text" class="text" placeholder="phone, email, or username"><br>
-                <input type="password" class="password" placeholder="Password"><br>
+                    <input type="text" class="username" placeholder="phone, email, or username " name="username"><br>
+                <input type="password" class="password" placeholder="Password" name="password"><br>
                 <div class="btn" >
-                    <button>
+                    <button type="submit">
                         Log In
                     </button>
                 </div>

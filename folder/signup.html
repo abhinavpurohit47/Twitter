@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
-    <link rel="stylesheet" href="/signup/style.css">
+    <link rel="stylesheet" href="home/css/style.css">
 </head>
 <body>
     <div class="section">
         <div class="content">
-            <img src="../images/bird.png" width="40px" height="35px" alt="twitter_icon">
+            <img src="home/images/bird.png" width="40px" height="35px" alt="twitter_icon">
             
         
         </div>
@@ -20,18 +20,25 @@
         </div>
 
         <div class="main">
+            <form class="formContainer" id="signupForm" method="POST" action="signupUser">
             <div class="form">
-                <input type="text" class="text" placeholder="phone, email, or username"><br>
-                <input type="password" class="password" placeholder="Password"><br>
+                <input type="text" class="text" placeholder="phone, email, or username" name="username"><br>
+               
+            </div>
+
+            <div class="form">
+                
+                <input type="password" class="password" placeholder="Password" name="password"><br>
             </div>
             <div class="btn">
-                <button>
+                <button type= "submit">
                     Sign In
                 </button>
             </div>
+        </form>
 
             <div class="User">
-                    <p> <a href="#">Already a User</a></p>
+                    <p> <a href="/">Already a User</a></p>
                 </div>
         </div>
 
