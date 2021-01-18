@@ -7,7 +7,8 @@ const os = require('os'); //package for knowing the uptime of the server
 const path = require('path');//for concatination of the dir name and the folder
 
 //const ejs = require('ejs');
-const jwt = require("jsonwebtoken");
+
+
 
 
 const mysql = require('mysql');
@@ -17,6 +18,7 @@ const hash = require('bcrypt');
 const port = process.env.PORT || 8000;// alternate port number
 
 const app = express();//initiaise express app
+
 const start = new Date(Date.now()); // starting time of server
 
 app.use(express.static(path.join(__dirname,'folder'))); //
@@ -25,7 +27,8 @@ app.use(express.urlencoded({extended: true}));//query string utilisation
 
 app.set("view engine", "ejs");
 
-app.set('views', path.join(__dirname,'/folder'));//
+app.set('views',path.join(__dirname,'./views'))
+
 
 
 
@@ -89,143 +92,123 @@ app.get('/signUpRoute', (req,res) => {
 })
 
 
-app.set('views',path.join(__dirname,'./views/index.ejs'))
 
 
+app.post('/signUpuser', (req,res) => {
 
 
-
-app.post("/loginUser", (req,res) =>
-{
-    let username = req.body.username;
-    let password = req.body.password;
-    con.query(
-        `SELECT * FROM auth WHERE username ='${username}'`,
-    async (err, result) => {
-      if (err) throw err;
-
-      if (result.length == 0) {
-        res.send({
-          status: 500,
-          message: "Email not found",
-        });
-
-    }
-    else {
-        let savedPassword = result[0].password;
-        // console.log(result[0].Password);
-        const isMatch = await hash.compare(password, savedPassword);
-        if (!isMatch) {
-          return res.send({
-            status: 500,
-            message: "Incorrect Password",
-          });
-        }
-        if (isMatch) {
-          //pass match: return jwt token else throw error
-          const payload = {
-            //defining payload
-            user: {
-              username: username,
-            },
-          };
-          jwt.sign(
-            //generates token
-            payload, //email here
-            "jwtsecret",
-            {
-              //extra options
-            },
-            (err, token) => {
-              if (err) throw err;
-              res.redirect("/?token=" + token);
-            }
-          );
-        }
-      }
-    }
-  );
-});
-
-    
-app.post('/signupUser', (req,res) => {
-    logger.log('Signing Up');
-
+logger.log('Signing Up');
     try{
-        console.log(req);
-        if(req.body.username.length === 0 || req.body.password.length ===0)
-        {
-            console.log('Error');
+        if(req.body.username.length === 0 || req.body.password.length === 0){
+            logger.log('Error');
             throw 'Invalid Fields'
         }
-
-        console.log(req.body);
+        logger.log(req.body);
         let password = req.body.password;
         let saltRound = 10;
-        var hashedPassword = hash.hashSync (password, saltRound);
-       /* hashing.hash(password,saltRound, (error,hashed) =>
-        {
-            if(error){
-                console.log(error);
-            }
-            else{
-                hashedPassword =hashed;
-            }
-        })*/
-        console.log(hashedPassword);
-        const data ={
-            username:req.body.username,
+        var hashedPassword = hash.hashSync(password, saltRound);
+        logger.log(hashedPassword);
+        const data = {
+            username: req.body.username,
             password: hashedPassword
         }
-        console.log(data);
-        var query = 'INSERT INTO auth (username, password) VALUES ("'+data.username+'","'+data.password+'")';
-     
-      con.query(query, (err, results) => {
-        if (err) {
-          res.send({
-            status: 500,
-            message: err.message,
-          });
-        } else {
-          const payload = {
-            //defining payload
-            user: {
-              email : data.username,
-            },
-          };
-          jwt.sign(
-            //generates token
-            payload, //email here
-            "jwtsecret",
-            {
-              //extra options
-            },
-            (err, token) => {
-                console.log(err.message);
-              if (err) throw err;
-              res.redirect("/?token=" + token);
-            }
-          );
-        }
-      });
+        var query = 'INSERT INTO auth (username, password) VALUES ("'+data.username+'" , "'+data.password+'")';
+                con.query(query, (err, result) => {
+                    if(err){
+                        logger.log(err);
+                        res.end();
+                    }
+                    else{
+                        logger.log('User added')
+                    }
+                });
+                res.render('index',{tweets:[]});
     }
-    catch(e) { //bcrypt end {
-res.send({
-status: 500,
-message: "User already exists",
-});
-}
-});
+    catch(e){
+        res.json({
+            message: e
+        })
+    }
+  })
 
 
-app.get('/health', (req,res) => {
-    res.status(200).json({
-        started: start,
-        uptime: os.uptime(),
-        message: `Server is running on port ${ port }`,
-        logs: logger.logs
-    });
-})
+  app.post('/Loginuser', (req,res) => {
+
+
+    logger.log('Logging In');
+
+
+        try{
+            if(req.body.username.length === 0 || req.body.password.length === 0){
+                logger.log('Error');
+                throw 'Invalid Fields'
+            }
+
+
+            logger.log(req.body);
+            let password = req.body.password;
+            let saltRound = 10;
+            let username = req.body.username;
+            var query = `SELECT * FROM auth WHERE username ='${username}'`;
+                    con.query (query,(err, result) => {
+                        if(err){
+                            logger.log(err);
+                            res.end();
+                        }
+                        else{
+                            let match = hash.compareSync(password,result[0].password)
+                            if (match){
+                                console.log("User Logged In");
+
+                                res.render("index" , {tweets:[]});
+
+                            }
+                            else{
+                                res.status(404).json({
+
+                                    "message" : "user not found"
+                                })
+                            }
+                        }
+                    }
+                    )}
+                    catch(e){
+                        console.log(e);
+                        res.status(400).json({
+                            "message" : e.message
+                        });
+
+                    }
+                })
+
+                app.put('/UpdateUser', (req,res) =>{
+                    console.log("Updating the user");
+                    try{
+                        if(req.body.username.length === 0 || req.body.password.length === 0){
+                            logger.log('Error');
+                            throw 'Invalid Fields'
+                        }
+            
+            
+                        logger.log(req.body);
+                        let password = req.body.password;
+                        let saltRound = 10;
+                        let username = req.body.username;
+                        var query = `UPDATE * FROM auth WHERE (username, password) VALUES ("'+data.username+'" , "'+data.password+'")`;
+                                con.query (query,(err, result) => {
+                                    if(err){
+                                        logger.log(err);
+                                        res.end();
+                                    }
+                                }
+                                catch(e){
+                                    console.log(e);
+                                    res.status(400).json({
+                                        "message" : e.message
+                                    });
+            
+                                }
+                })
 
 app.listen(port , (err) => {
     if(err){
@@ -234,4 +217,5 @@ app.listen(port , (err) => {
     else{
         logger.log(`Server Started on port ${port}`);
     }
-})
+
+});
