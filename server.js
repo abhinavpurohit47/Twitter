@@ -190,76 +190,93 @@ logger.log('Signing Up');
 
                     }
                 })
+                
 
-
-
-app.post("/update", (req, res) => {
-    let name = req.body.username;
-    let newName = req.body.newName;
+app.post("/update", (req,res) => {
+  try{
+    if(req.body.username.length === 0 || req.body.password.length === 0){
+        logger.log('Error');
+        throw 'Invalid Fields'
+    }
+    
+    
+    logger.log(req.body);
     let password = req.body.password;
-    let newPassword = req.body.newPassword;
-    let hashedPswd;
-    con.query(`SELECT username FROM auth WHERE username ='${name}'`, function (
-      err,
-      result
-    ) {
-      if (err) throw err;
-      // console.log(result);
-      if (result.length == 0) {
-        hash.genSalt(10, function (err, salt) {
-          if (err) {
-            throw err;
-          } else {
-            hash.hash(newPassword, salt, function (err, hash) {
-              if (err) {
-                throw err;
-              } else {
-                hashedPswd = hash;
-                let oldpass = "";
-                let getPass = `SELECT password FROM auth WHERE username = '${newName}'`;
-                con.query(getPass, function (err, results) {
-                  if (err) throw err;
-                  if (results.length != 0) {
-                    oldpass = results[0].password; 
-  
-                    hash.compare(password, oldpass, function (err, isMatch) {
-                      if (err) {
-                        throw err;
-                      } else if (!isMatch) {
-                         res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
-                          console.log("Incorrect password"));
-                      } else {
-                        let sql = `UPDATE auth SET username = "${newName}", password = "${hashedPswd}" WHERE username = "${name}" AND password = "${oldpass}"`;
-                        con.query(sql, function (error, results) {
-                          if (error) {
-                            throw error;
-                          } else if (results.affectedRows != 0)
-                          res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
-                          console.log("User Details Updated"))
-                          else  res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
-                          console.log("Incorrect Credentials"));
-                        });
-                      }
-                    });
-                  } else {
-                     res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
-                          console.log("Incorrect email"));
-                  }
+    let saltRound = 10;
+    
+    let newName = req.body.newName;
+    let oldpass = req.body.password;
+
+   
+    let name = req.body.username;
+    var hashedPswd = hash.hashSync(password,saltRound);
+    
+    let query = `UPDATE auth SET username = "${newName}", password = "${hashedPswd}" WHERE username = "${name}" AND password = "${oldpass}"`;
+            con.query (query,(err, result) => {
+                if(err){
+                    logger.log(err);
+                    res.end();
+                }
+                else{
+                    
+                    console.log("Updating");
+                    res.sendFile(path.join(__dirname,'/folder/landing_page.html'))
+                }
+            }
+            )}
+            catch(e){
+                console.log(e);
+                res.status(400).json({
+                    "message" : e.message
                 });
-              }
-            });
-          }
-        });
-      } else {  res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
-                          console.log("Email already Taken"));
-      }
-    });
-  });
-  
-  
+
+            }
+        })
+
+
+
+        app.post("/deleteUser", (req,res) => {
+          try{
+            if(req.body.username.length === 0 || req.body.password.length === 0){
+                logger.log('Error');
+                throw 'Invalid Fields'
+            }
+            
+            
+            logger.log(req.body);
+            
+            
+           
+            let name = req.body.username;
+            
+            
+            let query = `DELETE FROM auth WHERE username = '${name}'`;
+                    con.query (query,(err, result) => {
+                        if(err){
+                            logger.log(err);
+                            res.end();
+                        }
+                        else{
+                            
+                            console.log("Deleting");
+                            res.sendFile(path.join(__dirname,'/folder/landing_page.html'))
+                        }
+                    }
+                    )}
+                    catch(e){
+                        console.log(e);
+                        res.status(400).json({
+                            "message" : e.message
+                        });
+        
+                    }
+                })
+        
+        
+        
  
 
-  app.post("/deleteUser", function (req, res) {
+  /*app.post("/deleteUser", function (req, res) {
     var userName = req.body.userName;
     var password = req.body.password;
     if (userName && password) {
@@ -304,7 +321,7 @@ app.post("/update", (req, res) => {
     }
   });
 
-
+*/
 app.listen(port , (err) => {
     if(err){
         logger.log(err);
