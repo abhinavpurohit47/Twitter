@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="home/css/twitterlogin.css">
+</head>
+<body>
+    <div class="section">
+        <div class="content">
+            <img src="home/images/bird.png" width="40px" height="35px" alt="twitter_icon">
+        </div>
+        <div class="heading">
+            <h2>
+                DELETE USER <br>
+            </h2>
+        </div>
+
+        <div class="main">
+            <div class="form">
+                <form action="/deleteUser" method="POST">
+                    <input type="text" class="username" placeholder="phone, email, or username " name="username"><br>
+                <input type="password" class="password" placeholder="Password" name="password"><br>
+                <div class="btn" >
+                    <button type="submit">
+                        Delete User
+                    </button>
+                </div>
+                </form>
+            </div>
+            
+            
+        </div>
+
+    </div>
+    
+</body>
+</html>
