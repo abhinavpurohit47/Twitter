@@ -67,6 +67,7 @@ app.use(express.json());// server will take json input
 
 
 
+
 con.connect((err)=> {
     if(err){
 
@@ -190,36 +191,7 @@ logger.log('Signing Up');
                     }
                 })
 
-               /* app.put('/UpdateUser', (req,res) =>{
-                    console.log("Updating the user");
-                    try{
-                        if(req.body.username.length === 0 || req.body.password.length === 0){
-                            logger.log('Error');
-                            throw 'Invalid Fields'
-                        }
-            
-            
-                        logger.log(req.body);
-                        let password = req.body.password;
-                        let saltRound = 10;
-                        let username = req.body.username;
-                        var query = `UPDATE * FROM auth WHERE (username, password) VALUES ("'+data.username+'" , "'+data.password+'")`;
-                                con.query (query,(err, result) => {
-                                    if(err){
-                                        logger.log(err);
-                                        res.end();
-                                    }
-                                }
-                                )
-                                catch(e){
-                                    console.log(e);
-                                    res.status(400).json({
-                                        "message" : e.message
-                                    });
-            
-                                }
-                })
-*/
+
 
 app.post("/updateUser", (req, res) => {
     let name = req.body.userName;
@@ -227,104 +199,65 @@ app.post("/updateUser", (req, res) => {
     let password = req.body.password;
     let newPassword = req.body.newPassword;
     let hashedPswd;
-    con.query(`SELECT userName FROM auth WHERE userName ='${newName}'`, function (
+    con.query(`SELECT username FROM auth WHERE username ='${name}'`, function (
       err,
       result
     ) {
       if (err) throw err;
       // console.log(result);
       if (result.length == 0) {
-        bcrypt.genSalt(saltRounds, function (err, salt) {
+        hash.genSalt(10, function (err, salt) {
           if (err) {
             throw err;
           } else {
-            bcrypt.hash(newPassword, salt, function (err, hash) {
+            hash.hash(newPassword, salt, function (err, hash) {
               if (err) {
                 throw err;
               } else {
                 hashedPswd = hash;
                 let oldpass = "";
-                let getPass = `SELECT password FROM auth WHERE userName = '${name}'`;
+                let getPass = `SELECT password FROM auth WHERE username = '${newName}'`;
                 con.query(getPass, function (err, results) {
                   if (err) throw err;
                   if (results.length != 0) {
                     oldpass = results[0].password; 
   
-                    bcrypt.compare(password, oldpass, function (err, isMatch) {
+                    hash.compare(password, oldpass, function (err, isMatch) {
                       if (err) {
                         throw err;
                       } else if (!isMatch) {
-                        res.render('update', { message: "Incorrect password." });
+                         res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
+                          console.log("Incorrect password"));
                       } else {
-                        let sql = `UPDATE auth SET userName = "${newName}", password = "${hashedPswd}" WHERE userName = "${name}" AND password = "${oldpass}"`;
+                        let sql = `UPDATE auth SET username = "${newName}", password = "${hashedPswd}" WHERE username = "${name}" AND password = "${oldpass}"`;
                         con.query(sql, function (error, results) {
                           if (error) {
                             throw error;
                           } else if (results.affectedRows != 0)
-                          res.render('update', { message: "User Details Updated." });
-                          else res.render('update', { message: "Incorrect Credentials." });
+                          res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
+                          console.log("User Details Updated"))
+                          else  res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
+                          console.log("Incorrect Credentials"));
                         });
                       }
                     });
                   } else {
-                    res.render('update', { message: "Incorrect Email." });
+                     res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
+                          console.log("Incorrect email"));
                   }
                 });
               }
             });
           }
         });
-      } else {
-        res.render('user/updateUser', { message: "Email already taken." });
+      } else {  res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
+                          console.log("Email already Taken"));
       }
     });
   });
   
   
-  app.post("/deleteUser", function (req, res) {
-    var userName = req.body.userName;
-    var password = req.body.password;
-    if (userName && password) {
-      bcrypt.genSalt(saltRounds, function (err, salt) {
-        if (err) {
-          throw err;
-        } else {
-          let hash = "";
-          //store the value of hashedPswd in hash
-          let getPass = `SELECT password FROM userinfo WHERE userName = '${userName}'`;
-          con.query(getPass, function (err, results) {
-            if (err) throw err;
-            if (results.length != 0) {
-              hash = results[0].password; // stored
-              //compare it with the entered password
-              bcrypt.compare(password, hash, function (err, isMatch) {
-                if (err) {
-                  throw err;
-                } else if (!isMatch) {
-                  res.render('user/deleteUser', { message: "Incorrect Password." });
-                } else {
-                  let sql = `DELETE FROM userinfo WHERE userName = '${userName}' AND password = '${hash}';`;
-                  con.query(sql, function (error, results) {
-                    if (error) {
-                      throw error;
-                    }
-                    // res.redirect("/");
-                    res.render('user/deleteUser', { message: "User has been deleted." });
-                    // res.end();
-                  }); // end con.query(sql)
-                }
-              }); //end bcrypt.comapre()
-            } else {
-              res.render('user/deleteUser', { message: "Invalid details." });
-            }
-          }); // end con.query(getPass)
-        }
-      });
-    }
-  });
-  
-
-
+ 
 
 
 

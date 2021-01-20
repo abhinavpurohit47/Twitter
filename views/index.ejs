@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>(<%= tweets.length %>) Home Twittter</title>
+    <title> Home Twittter</title>
 
     <script src="https://use.fontawesome.com/9243569efd.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -29,7 +29,7 @@
               </li>
 
               <li class="nav-item ">
-                <a class="nav-link" href="#"><i class="fa fa-bell"></i> <sup>(<%= tweets.length %>)+</sup> Notifications</a>
+                <a class="nav-link" href="#"><i class="fa fa-bell"></i> <sup></sup> Notifications</a>
               </li>
 
               <li class="nav-item ">
@@ -91,10 +91,7 @@
 
 
 <div class="Post-container">
-    <% tweets.forEach(function(tweet,index){ %> <% var asciiSum = 0 %> <%
-    [...tweet.name].forEach(function (char,index) {
-    asciiSum+=tweet.name.charCodeAt(index) }) %>
-
+   
     <div class="post">
       <img
         class="profile_img-post"
@@ -104,7 +101,7 @@
       <div class="post-content">
         <div class="post-userName">
           <div class="Name"><%= tweet.name %></div>
-          <div class="ID">@<%= tweet.userName %></div>
+          <div class="ID">@<%= tweet.username %></div>
         </div>
         <div class="content-text"><%= tweet.content %></div>
         <div class="icons">
