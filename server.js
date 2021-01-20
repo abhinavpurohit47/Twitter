@@ -97,7 +97,7 @@ app.get('/updateUser', (req,res) => {
     res.sendFile(path.join(__dirname,'/folder/update.html'));
 })
   
-app.get('/deleteUser', (req,res) => {
+app.get('/deleteRoute', (req,res) => {
     logger.log('Deleting');
     res.sendFile(path.join(__dirname,'/folder/delete.html'));
 })
@@ -193,8 +193,8 @@ logger.log('Signing Up');
 
 
 
-app.post("/updateUser", (req, res) => {
-    let name = req.body.userName;
+app.post("/update", (req, res) => {
+    let name = req.body.username;
     let newName = req.body.newName;
     let password = req.body.password;
     let newPassword = req.body.newPassword;
@@ -259,7 +259,50 @@ app.post("/updateUser", (req, res) => {
   
  
 
-
+  app.post("/deleteUser", function (req, res) {
+    var userName = req.body.userName;
+    var password = req.body.password;
+    if (userName && password) {
+      hash.genSalt(10, function (err, salt) {
+        if (err) {
+          throw err;
+        } else {
+          let bcrypt = "";
+          //store the value of hashedPswd in hash
+          let getPass = `SELECT password FROM auth WHERE password = '${password}'`;
+          con.query(getPass, function (err, results) {
+            if (err) throw err;
+            if (results.length != 0) {
+              bcrypt = results[0].password; // stored
+              //compare it with the entered password
+              hash.compare(password, bcrypt, function (err, isMatch) {
+                if (err) {
+                  throw err;
+                } else if (!isMatch) {
+                  res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
+                  console.log("Incorrect Password"));
+                } else {
+                  let sql = `DELETE FROM auth WHERE username = '${username}' AND password = '${bcrypt}';`;
+                  con.query(sql, function (error, results) {
+                    if (error) {
+                      throw error;
+                    }
+                    // res.redirect("/");
+                    res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
+                    console.log("User Has been deleted"));
+                    // res.end();
+                  }); // end con.query(sql)
+                }
+              }); //end bcrypt.comapre()
+            } else {
+              res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
+                          console.log("Invalid Details"));
+            }
+          }); // end con.query(getPass)
+        }
+      });
+    }
+  });
 
 
 app.listen(port , (err) => {
