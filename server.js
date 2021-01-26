@@ -141,6 +141,52 @@ logger.log('Signing Up');
     }
   })
 
+  app.get('/addTweetRoute', (req,res) => {
+    logger.log('Adding Tweet ');
+    res.render('index',{tweets:[]});
+})
+
+
+  app.post('/addTweet',(req,res) =>{
+    console.log('Adding Tweet');
+
+    try{
+      if(req.body.content.length === 0 )
+      {
+        console.log('Error');
+        throw 'Invalid'
+      }
+      console.log(req.body);
+      var query = 'INSERT INTO tweets (username,content,likes) VALUES ("'+req.body.username+'","'+req.body.content+'","'+0+'")';
+      con.query(query, (err, result) => {
+          if(err){
+              logger.log(err);
+              res.end();
+          }
+          else{
+              logger.log('Tweet added')
+          }
+      });
+      res.render('index',{tweets:[]});
+}
+catch(e){
+res.json({
+  message: e.message
+})
+}
+})
+
+
+
+
+app.post("/tweetUpdate",(req,res,next) => {
+  let postUpdate = { name:req.body.username, email:req.body.email }
+  connection.query("Insert INTO tweets ")
+})
+
+
+
+
 
   app.post('/Loginuser', (req,res) => {
 
@@ -169,8 +215,17 @@ logger.log('Signing Up');
                             let match = hash.compareSync(password,result[0].password)
                             if (match){
                                 console.log("User Logged In");
-
-                                res.render("index" , {tweets:[]});
+                              var query1= `SELECT * FROM tweets`;
+                              con.query(query1,(err1,result1)=>{
+                                if(err1){
+                                  console.log(err1);
+                                  res.end();
+                                }
+                                else {
+                                  res.render("index" , {tweets:result1,name:req.body.username});
+                                }
+                              })
+                                 
 
                             }
                             else{
@@ -276,52 +331,43 @@ app.post("/update", (req,res) => {
         
  
 
-  /*app.post("/deleteUser", function (req, res) {
-    var userName = req.body.userName;
-    var password = req.body.password;
-    if (userName && password) {
-      hash.genSalt(10, function (err, salt) {
-        if (err) {
-          throw err;
-        } else {
-          let bcrypt = "";
-          //store the value of hashedPswd in hash
-          let getPass = `SELECT password FROM auth WHERE password = '${password}'`;
-          con.query(getPass, function (err, results) {
-            if (err) throw err;
-            if (results.length != 0) {
-              bcrypt = results[0].password; // stored
-              //compare it with the entered password
-              hash.compare(password, bcrypt, function (err, isMatch) {
-                if (err) {
-                  throw err;
-                } else if (!isMatch) {
-                  res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
-                  console.log("Incorrect Password"));
-                } else {
-                  let sql = `DELETE FROM auth WHERE username = '${username}' AND password = '${bcrypt}';`;
-                  con.query(sql, function (error, results) {
-                    if (error) {
-                      throw error;
-                    }
-                    // res.redirect("/");
-                    res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
-                    console.log("User Has been deleted"));
-                    // res.end();
-                  }); // end con.query(sql)
-                }
-              }); //end bcrypt.comapre()
-            } else {
-              res.sendFile(path.join(__dirname,'/folder/landing_page.html'),
-                          console.log("Invalid Details"));
-            }
-          }); // end con.query(getPass)
+  app.post('/deleteTweet', (req,res) => {
+    
+      try{
+        if(req.body.content.length === 0){
+          console.log('Error');
+          throw 'Invalid Fields'
         }
-      });
-    }
-  });
 
-*/
+        logger.log(req.body);
+            
+            console.log(req.body);
+            
+            let query =`DELETE FROM tweets WHERE content = '${content}'`;
+            con.query (query,(err,result) => {
+              if(err){
+                console.log(err);
+                res.end();
+              }
+              else{
+                console.log("Deleting");
+
+              }
+            }
+            )}
+              catch(e){
+                console.log(e);
+                res.status(400).json ({
+                  "message": e.message
+                });
+
+              }
+            })
+           
+       
+    
+
+
 app.listen(port , (err) => {
     if(err){
         logger.log(err);
